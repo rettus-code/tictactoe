@@ -1,17 +1,29 @@
 // Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 const AWS = require('aws-sdk')
-const sns = new AWS.SNS();
+const ses = new AWS.SES({region: "us-west-2"});
 
-const sendMessage = async ({ phoneNumber, message }) => {
+const sendMessage = async ({ email, message }) => {
   const params = {
-    Message: message,
-    PhoneNumber: phoneNumber
-  }
+    Destination: {
+      ToAddresses: email
+    },
+    Message: {
+      Body: {
+        Text: {
+          Data: message
+        }
+      },
+      Subject: {
+        Data: "TicTacToe"
+      }
+    },
+    Source: "difaraw@yahoo.com"
 
-  return sns.publish(params).promise()
+  }
+  return ses.sendEmail(params).promise()
 }
 
-sendMessage({ phoneNumber: process.env.PHONE_NUMBER, message: 'Sending a message from SNS!'})
+sendMessage({ email: process.env.EMAIL, message: 'Sending a message from SES!'})
   .then(() => console.log('Sent message successfully'))
-  .catch((error) => console.log('Error sending SNS: ', error.message))
+  .catch((error) => console.log('Error sending SES: ', error.message))

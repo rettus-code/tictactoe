@@ -33,29 +33,29 @@ const handlePostMoveNotification = async ({ game, mover, opponent }) => {
   if (xs) {
     const winnerMessage = "x's won o's lost";
     await Promise.all([
-      sendMessage({ phoneNumber: opponent.phoneNumber, message: winnerMessage }),
-      sendMessage({ phoneNumber: mover.phoneNumber, message: winnerMessage })
+      sendMessage({ email: opponent.email, message: winnerMessage }),
+      sendMessage({ email: mover.email, message: winnerMessage })
     ])
     return
   }
   if (os) {
     const winnerMessage = "o's won x's lost";
     await Promise.all([
-      sendMessage({ phoneNumber: opponent.phoneNumber, message: winnerMessage }),
-      sendMessage({ phoneNumber: mover.phoneNumber, message: winnerMessage })
+      sendMessage({ email: opponent.email, message: winnerMessage }),
+      sendMessage({ email: mover.email, message: winnerMessage })
     ])
     return
   }
   if (noone) {
     const winnerMessage = "Nobody wins";
     await Promise.all([
-      sendMessage({ phoneNumber: opponent.phoneNumber, message: winnerMessage }),
-      sendMessage({ phoneNumber: mover.phoneNumber, message: winnerMessage })
+      sendMessage({ email: opponent.email, message: winnerMessage }),
+      sendMessage({ email: mover.email, message: winnerMessage })
     ])
     return
   }
   const message = `${mover.username} has moved. It's your turn next in Game ID ${game.gameId}!`
-  await sendMessage({ phoneNumber: opponent.phoneNumber, message })
+  await sendMessage({ email: opponent.email, message })
 };
 
 module.exports = handlePostMoveNotification;
