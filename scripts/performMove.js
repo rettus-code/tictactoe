@@ -12,13 +12,13 @@ const performMove = async ({ gameId, user, changedHeap, changedHeapValue }) => {
     Key: { 
       gameId: gameId
     },
-    UpdateExpression: `SET lastMoveBy = :user, r1c1 = :changedHeapValue`,
+    UpdateExpression: `SET lastMoveBy = :user, ${changedHeap} = :changedHeapValue`,
     ConditionExpression: `(user1 = :user OR user2 = :user) AND lastMoveBy <> :user AND ${changedHeap} > :changedHeapValue`,
     ExpressionAttributeValues: {
       ':user': user,
       ':changedHeapValue': changedHeapValue
     },
-    ReturnValues: 'UPDATED_NEW'
+    ReturnValues: 'ALL_NEW'
   };
   console.log()
   try {
