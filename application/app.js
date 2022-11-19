@@ -38,7 +38,10 @@ app.post("/users", wrapAsync(async (req, res) => {
   );
   res.json(user);
 }));
-
+//landing page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 // Create new game
 app.post("/games", wrapAsync(async (req, res) => {
   const validated = validateCreateGame(req.body);
@@ -79,6 +82,7 @@ app.post("/games/:gameId", wrapAsync(async (req, res) => {
   } else {
     opponentUsername = game.user2
   }
+  
   const opponent = await fetchUserByUsername(opponentUsername);
   const mover = {
     username: token['cognito:username'],

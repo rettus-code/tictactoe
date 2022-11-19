@@ -6,7 +6,7 @@ const ses = new AWS.SES({region: "us-west-2"});
 const sendMessage = async ({ email, message }) => {
   const params = {
     Destination: {
-      ToAddresses: email
+      ToAddresses: [email]
     },
     Message: {
       Body: {
