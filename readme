@@ -4,7 +4,7 @@ Michael Rettus
 
 https://krjsusbup1.execute-api.us-west-2.amazonaws.com/prod   The API gateway
 
-noc CLI
+no CLI
 
 http://34.223.37.52:5000/   The client URL though it does not work with the gateway
 
