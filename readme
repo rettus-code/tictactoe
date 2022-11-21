@@ -1,0 +1,14 @@
+Keagan Cantrell
+Michael Rettus
+
+
+https://krjsusbup1.execute-api.us-west-2.amazonaws.com/prod   The API gateway
+
+noc CLI
+
+http://34.223.37.52:5000/   The client URL though it does not work with the gateway
+
+We were able to implement the lambda function and have the all the requirements for that. We had problems with CORS
+and tying the web based gui to send API requests that matched the way the curls aorked within the cloud9 ide.
+We're truning this in due to time limits but intend to continue working on it until all features are working.
+
